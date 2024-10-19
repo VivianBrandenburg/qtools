@@ -5,7 +5,7 @@ If you want to use the training code start with the [[#Install|Installation inst
 
 - [Install](#Install)
  
-- [Training a siamese or quartet model](#Training a siamese or quartet model)
+- [Training a siamese or quartet model](#Training-a-siamese-or-quartet-model)
 	- [Prepare quartets and distances](#Training a siamese or quartet model#Prepare quartets and distances)
 	- [[#Training a siamese or quartet model#Setting up data and model|Setting up data and model]]
 	- [[#Training a siamese or quartet model#Training and evaluating the model|Training and evaluating the model]]
