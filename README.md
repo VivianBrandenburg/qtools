@@ -3,9 +3,9 @@ If you are mainly interested in exploring the training results, check out how to
 If you want to use the training code start with the [[#Install|Installation instructions]]
 
 
-- [[#Install|Install]]
-		- [[#Requirements|Requirements]]
-- [[#Training a siamese or quartet model|Training a siamese or quartet model]]
+- [Install](#Install)
+		- [Requirements](#Requirements)
+- [Training a siamese or quartet model](#Training a siamese or quartet model)
 	- [[#Training a siamese or quartet model#Prepare quartets and distances|Prepare quartets and distances]]
 	- [[#Training a siamese or quartet model#Setting up data and model|Setting up data and model]]
 	- [[#Training a siamese or quartet model#Training and evaluating the model|Training and evaluating the model]]
