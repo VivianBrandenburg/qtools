@@ -2,23 +2,19 @@
 If you are mainly interested in exploring the training results, check out how to use the [[#Explore the results with Dashboard|Dashboard]]. 
 If you want to use the training code start with the [[#Install|Installation instructions]]
 
+- [Install](#install)
+- [Training a siamese or quartet model](#training-a-siamese-or-quartet-model)
+	- [Prepare quartets and distances](#prepare-quartets-and-distances)
+	- [Setting up data and model](#setting-up-data-and-model)
+	- [Training and evaluating the model](#training-and-evaluating-the-model)
+- [Tracking metadata and results](#tracking-metadata-and-results)
+	- [Write results during training](#write-results-during-training)
+	- [Write metadata](#write-metadata)
+- [Data simulation](#data-simulation)
+- [Attribution scores from in silico mutagenesis](#attribution-scores-from-in-silico-mutagenesis)
+- [Attribution scores from DeepLIFT](#attribution-scores-from-deeplift)
+- [Explore the results with Dashboard](#explore-the-results-with-dashboard)
 
-- [Install](#Install)
- 
-- [Training a siamese or quartet model](#Training-a-siamese-or-quartet-model)
-	- [Prepare quartets and distances](#Training a siamese or quartet model#Prepare quartets and distances)
-	- [[#Training a siamese or quartet model#Setting up data and model|Setting up data and model]]
-	- [[#Training a siamese or quartet model#Training and evaluating the model|Training and evaluating the model]]
-- [[#Tracking metadata and results|Tracking metadata and results]]
-	- [[#Tracking metadata and results#Write results during training|Write results during training]]
-	- [[#Tracking metadata and results#Write metadata|Write metadata]]
-- [[#Data simulation|Data simulation]]
-		- [[#Write metadata#Generating sequences|Generating sequences]]
-		- [[#Write metadata#Inspecting sequences|Inspecting sequences]]
-		- [[#Write metadata#Writing generated sequences|Writing generated sequences]]
-- [[#Attribution scores from in silico mutagenesis|Attribution scores from in silico mutagenesis]]
-- [[#Attribution scores from DeepLIFT|Attribution scores from DeepLIFT]]
-- [[#Explore the results with Dashboard|Explore the results with Dashboard]]
 
 
 # Install
