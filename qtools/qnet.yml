@@ -1,0 +1,13 @@
+name: qnet_t2
+dependencies:
+  - conda-forge::biopython
+  - pandas
+  - scikit-learn
+  - scipy 
+  - seaborn
+  - numpy=1.21.2
+  - tensorflow=2.4.1
+  - pip
+  - pip:
+    - logomaker
+    - ./dist/qtools-1.0.0.tar.gz

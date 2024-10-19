@@ -1,0 +1,1 @@
+The splitstree reconstruction after **epoch 10** of this model is shown in the paper *Brandenburg et al., 2024*, Fig. 4. 

@@ -1,0 +1,1 @@
+{"epochs": 100, "learning_rate": 0.001, "batch_size": 1, "date": "2024_09_10__12_04_03", "model_type": "q+s", "sigma": 0.001, "seq_type": "simulated", "seq_len": 35, "seqs_file": "data/simdata/s8_n20m3_r7_run1/sequences.csv"}

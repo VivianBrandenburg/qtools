@@ -1,0 +1,134 @@
+.grid-container {
+  display: grid;
+   grid-template-columns: 120px 120px 220px 220px auto;
+  column-gap: 50px;
+  row-gap: 50px;
+  background-color: None;
+  padding: 10px;
+}
+
+
+.selectionzone{
+grid-row: 1 / span 2;
+grid-column: 1 ;
+font-size: 12px;
+}
+
+.selectionitem{
+margin-left : 10px;
+margin-bottom : 15px;
+margin-top : 5px}
+
+
+.smallmarg{
+margin-top: -5px;
+margin-bottom: -10px}
+
+
+.splitstreeimg{
+grid-row: 1 / span 2;
+grid-column: 5 ;
+}
+
+
+
+.reftree{
+grid-row: 2;
+grid-column: 2 ;
+
+}
+
+.featurevectors{
+grid-row: 2 ;
+grid-column: 3 ;
+width: 460px;
+
+}
+
+
+
+
+
+.grid-container-2 {
+  display: grid;
+   grid-template-columns: 740px auto;
+  column-gap: 30px;
+  row-gap: 30px;
+  background-color: None;
+  padding: 10px;
+}
+
+
+.seqtable{
+grid-row: 1;
+grid-column: 1  }
+
+.showmotif{
+grid-row: 1;
+grid-column: 2 }
+
+
+.species-checklist{
+grid-row: 1;
+grid-column: 3 ;
+margin-left:10px;
+}
+
+
+
+.button{
+background-color: #04AA6D;
+border-color: red;
+font-size: 10pt;
+border-radius: 8px;
+margin-left:10pt;
+float:left;}
+
+
+
+
+.controlseq_trees{
+grid-row: 1 ;
+grid-column: 1 / span 3;
+;}
+
+
+
+body {
+    max-width:  90%;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+  
+  }
+
+
+h5{
+color:#80C1C8}
+
+
+
+
+.togglefield{
+display: flex;
+gap: 20px;
+flex-direction: row;
+justify-content: center}
+
+
+
+.smallfig{
+    width: 230px;
+    height: 180px;
+}
+
+
+.logitems{
+margin-left: 10px;
+margin-right: 2px;
+}
+
+input[type='radio'] {
+    accent-color: #028391;
+}
+

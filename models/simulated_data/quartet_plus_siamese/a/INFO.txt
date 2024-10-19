@@ -1,0 +1,1 @@
+This model was used to calculate attribution scores with in silico mutagenesis and DeepLIFT. Scores for **feature 3 and 10** after **epoch 13** are shown in *Brandenburg et al., 2024*.

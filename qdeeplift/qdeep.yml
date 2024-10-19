@@ -1,0 +1,17 @@
+name: qdeep
+dependencies: 
+  - python=3.7
+  - tensorflow=1.15.2
+  - pip
+  - pandas
+  - pip:
+    - logomaker
+    - deeplift
+    - keras==2.3.1
+    - pyyaml
+    - numpy==1.19.5
+    - protobuf==3.20.*
+    - h5py==2.10.0
+    
+  
+

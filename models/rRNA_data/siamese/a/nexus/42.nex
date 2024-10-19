@@ -1,0 +1,18 @@
+#NEXUS
+BEGIN taxa; DIMENSIONS ntax=13; TAXLABELS [1] Alph_Acet_Acet_lova [2] Alph_Acet_Acet_past [3] Alph_Holo_Holo_acum [4] Alph_Holo_Holo_cary [5] Alph_Rhod_Rhod_azot [6] Alph_Rhod_Rhod_mari [7] Gamm_Card_Wohl_larv [8] Gamm_Ente_Esch_coli [9] Gamm_Ente_Idio_pisc [10] Gamm_Ente_Idio_seos [11] Gamm_Ente_Pseu_arab [12] Gamm_Ente_Pseu_phen [13] Gamm_Ente_Yers_pseu ; END;
+BEGIN distances; DIMENSIONS ntax=13; FORMAT triangle=LOWER diagonal labels missing=? ;
+MATRIX 
+Alph_Acet_Acet_lova 0.
+Alph_Acet_Acet_past 0.101964 0.      
+Alph_Holo_Holo_acum 1.04680599 1.12117118 0.        
+Alph_Holo_Holo_cary 0.86165393 0.93601913 0.32435212 0.        
+Alph_Rhod_Rhod_azot 1.21488113 1.23383839 1.25001591 1.09183919 0.        
+Alph_Rhod_Rhod_mari 1.05630115 1.07525841 1.36287454 1.17934999 0.20620879 0.        
+Gamm_Card_Wohl_larv 1.24462269 1.24703769 1.58171764 1.44880113 1.90330061 1.74700141 0.        
+Gamm_Ente_Esch_coli 1.33222644 1.28697883 1.87924052 1.75027824 2.0517341  1.87008706 0.81517633 0.        
+Gamm_Ente_Idio_pisc 1.87195758 1.90183143 2.3608366  2.23187432 2.25393787 2.04951811 1.11943129 0.74647593 0.        
+Gamm_Ente_Idio_seos 1.71770143 1.70467805 2.38937797 2.26041569 2.23958202 2.03516225 1.18042983 0.754591   0.19715337 0.        
+Gamm_Ente_Pseu_arab 2.31311504 2.32175658 3.05933352 2.79117118 2.95633994 2.75192018 1.68290661 1.29778752 0.70240207 0.71675792 0.        
+Gamm_Ente_Pseu_phen 2.45399994 2.46264149 3.20021842 2.93205608 3.09722485 2.89280508 1.82379152 1.43867243 0.84328698 0.85764283 0.3868092  0.        
+Gamm_Ente_Yers_pseu 1.50856836 1.44194848 1.96122761 2.00392552 2.4046845  2.22303747 0.91346655 0.35295041 0.76272265 0.73418128 1.15826526 1.29915017 0.        
+; END;
