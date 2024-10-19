@@ -346,7 +346,7 @@ predictions = coremodel.predict(np.array(mutated_seqs))
 attributions = calculate_mutagensis_scores(predictions, input_length = 35, output_nodes = 30, feature =2)
 ```
 
-You can visualize the scores with logomaker
+You can visualize the scores with [logomaker](https://logomaker.readthedocs.io/en/latest/)
 ```python
 from qnet import motif
 
