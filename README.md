@@ -15,23 +15,7 @@ If you want to use the training code start with the [Installation instructions](
 - [Attribution scores from DeepLIFT](#attribution-scores-from-deeplift)
 - [Explore the results with Dashboard](#explore-the-results-with-dashboard)
 
-- [Install](#install)
-- [Training a siamese or quartet model](#training-a-siamese-or-quartet-model)
-	- [Prepare quartets and distances](#prepare-quartets-and-distances)
-	- [Setting up data and model](#setting-up-data-and-model)
-	- [Training and evaluating the model](#training-and-evaluating-the-model)
-- [Tracking metadata and results](#tracking-metadata-and-results)
-	- [Write results during training](#write-results-during-training)
-	- [Write metadata](#write-metadata)
-- [Data simulation](#data-simulation)
-- [Attribution scores from in silico mutagenesis](#attribution-scores-from-in-silico-mutagenesis)
-- [Attribution scores from DeepLIFT](#attribution-scores-from-deeplift)
-- [Explore the results with Dashboard](#explore-the-results-with-dashboard)
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 81475dbd579b0cf204bd26c0259bafe3c51d8bac
 
 # Install
 
@@ -365,7 +349,7 @@ predictions = coremodel.predict(np.array(mutated_seqs))
 attributions = calculate_mutagensis_scores(predictions, input_length = 35, output_nodes = 30, feature =2)
 ```
 
-You can visualize the scores with [logomaker](https://logomaker.readthedocs.io/en/latest/)
+You can visualize the scores with logomaker
 ```python
 from qnet import motif
 
