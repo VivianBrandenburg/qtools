@@ -1,24 +1,20 @@
+If you are mainly interested in exploring the training results, check out how to use the [Dashboard](#explore-the-results-with-dashboard). 
+If you want to use the training code start with the [Installation instructions](#install).
 
-If you are mainly interested in exploring the training results, check out how to use the [[#Explore the results with Dashboard|Dashboard]]. 
-If you want to use the training code start with the [[#Install|Installation instructions]]
+- [Install](#install)
+    - [Data download](#download-data)
+- [Training a siamese or quartet model](#training-a-siamese-or-quartet-model)
+	- [Prepare quartets and distances](#prepare-quartets-and-distances)
+	- [Setting up data and model](#setting-up-data-and-model)
+	- [Training and evaluating the model](#training-and-evaluating-the-model)
+- [Tracking metadata and results](#tracking-metadata-and-results)
+	- [Write results during training](#write-results-during-training)
+	- [Write metadata](#write-metadata)
+- [Data simulation](#data-simulation)
+- [Attribution scores from in silico mutagenesis](#attribution-scores-from-in-silico-mutagenesis)
+- [Attribution scores from DeepLIFT](#attribution-scores-from-deeplift)
+- [Explore the results with Dashboard](#explore-the-results-with-dashboard)
 
-
-- [[#Install|Install]]
-		- [[#Requirements|Requirements]]
-- [[#Training a siamese or quartet model|Training a siamese or quartet model]]
-	- [[#Training a siamese or quartet model#Prepare quartets and distances|Prepare quartets and distances]]
-	- [[#Training a siamese or quartet model#Setting up data and model|Setting up data and model]]
-	- [[#Training a siamese or quartet model#Training and evaluating the model|Training and evaluating the model]]
-- [[#Tracking metadata and results|Tracking metadata and results]]
-	- [[#Tracking metadata and results#Write results during training|Write results during training]]
-	- [[#Tracking metadata and results#Write metadata|Write metadata]]
-- [[#Data simulation|Data simulation]]
-		- [[#Write metadata#Generating sequences|Generating sequences]]
-		- [[#Write metadata#Inspecting sequences|Inspecting sequences]]
-		- [[#Write metadata#Writing generated sequences|Writing generated sequences]]
-- [[#Attribution scores from in silico mutagenesis|Attribution scores from in silico mutagenesis]]
-- [[#Attribution scores from DeepLIFT|Attribution scores from DeepLIFT]]
-- [[#Explore the results with Dashboard|Explore the results with Dashboard]]
 
 
 # Install
@@ -39,7 +35,7 @@ python setup.py sdist
 pip install .
 ```
 
-### Requirements
+## Requirements
 A list of requirements is provided in `/qtools/requirements.txt.` A common pitfall is the incompatibility of numpy and tensorflow versions, so be careful to **make sure that your numpy version fits your tensorflow version**. I used the following combination: 
 
 - python==3.9.7
@@ -47,12 +43,15 @@ A list of requirements is provided in `/qtools/requirements.txt.` A common pitfa
 - numpy==1.21.2
 
 
+## Download data
+The data in this repository are enough to test everything described here (training a model, simulating data, calculating attribution scores, exploring data with dashboard). If you are interested in more training results and trained models, download the data from figshare with doi:[10.6084/m9.figshare.27263556] and replace `\models` with the downloaded file.
 
 
-# Training a siamese or quartet model 
+
+# Training a siamese or quartet model
 
 
-## Prepare quartets and distances 
+## Prepare quartets and distances
 
 You need several files for quartet learning, siamese leanring and the combined quartet-siames learning . 
 Start by creating a Bio.Phylo.Newick.Tree object with your training species
@@ -90,7 +89,7 @@ distances = dp.get_edgelengths(tree, train_names)
 
 
 
-## Setting up data and model 
+## Setting up data and model
 The code in this chapter along with some comments can be found in the `training_detailed.py` script. 
 
 
@@ -165,7 +164,7 @@ data.encode(singlemodel.encoding_function)
 x_encoded, x_species = data.get_data()
 ```
 
-## Training and evaluating the model 
+## Training and evaluating the model
 Training the model is quite easy. You can use a for-loop for it. I use several evaluation steps after each epoch. 
 ```Python 
 for e in range(epochs):
@@ -199,7 +198,7 @@ If you want to use the parameter `epochs` of multimodel.fit instead of the for-l
 I have used a dashboard for visualization of the results. The files that contain the data that are plotted on the dashboard are produced during training. The `tracking` module  automatically writes feature vectors, scores and losses to json-files. If you are interested in that also have a look at  the `training.py` script.  
 
 
-## Write results during training  
+## Write results during training
 
 The tracking module makes it easuier to keep track of loss, quartet scores and feature vectors during training.  You have to initialize it before the first epoch
 ```python 
@@ -221,7 +220,7 @@ If you need more details, have a look at the `training.py` script.
 
 
 
-## Write metadata 
+## Write metadata
 
 Independent from the other tracking, you can track the metadata during training, These can be used for data selection in the Dashboard. 
 ```python
@@ -249,7 +248,7 @@ mutation_scheme : str
 	indicator on which simulated seqeuence was used for training     
 
 
-# Data simulation 
+# Data simulation
 
 This code can be used to simulate data along a given tree.  Code on how to use the data simulation can be found in the script `simulate_data_on_given_tree.py`. 
 
@@ -290,7 +289,7 @@ If you create sequences in a loop, you might want to clear the generated sequenc
 tree.clear_sequences()
 ```
 
-### Inspecting sequences 
+### Inspecting sequences
 
 
 While the sequences are generated, a mutation scheme is written to tree.mutationscheme, with  *n* : nts in evolving sequence, *m* : mutations, *s* : stable nts, *r* : random nts. 
@@ -314,7 +313,7 @@ internal_node.control_dict
 ```
 
 
-### Writing generated sequences 
+### Writing generated sequences
 
 There are two ways to write the generated sequences. `tree.write_as_tree` writes trees from all sequences and control sequences to newick format and additionally plots these trees to a given path. `tree.write_as_csv` writes a  `sequences.csv` file with all sequences and control sequences to a given path. 
 ```python
@@ -372,7 +371,7 @@ I have used DeepLIFT  for this work. Please find details on how to install and u
 DeepLIFT is based on tensorflow 1, so that you will need a new environment to use it. This is how I build my environment: 
 
 ```
-cd qdeeplift 
+cd deeplift 
 conda env create -f qdeep.yml 
 conda activate qdeep
 ```
@@ -392,7 +391,7 @@ If you want to explore the input sequences and the results of trained models, yo
 
 You might want to set up a new environment for the dashboard with [conda](https://docs.conda.io/projects/conda/en/latest/user-guide/index.html) and start the dashboard with pyhton
 ```
-cd ./qdashboard 
+cd ./dashboard 
 
 conda env create -f qdash.yml
 conda activate qdash
@@ -403,8 +402,9 @@ You can use the dashboard to
 - see **losses and quartet scores** for different model types and different initializations/trainings of the models 
 - check out **feature vectors and splits diagrams** for each epoch during training (splits diagrams created with [SplitsTree4](https://software-ab.cs.uni-tuebingen.de/download/splitstree4/manual.pdf))
 - build **alignment motifs** from the training data (with the help of [logomaker](https://logomaker.readthedocs.io/en/latest/))
-- (hopefully) comming soon: create **in silico mutagenesis** and attribution scores for different models / output features
 
 
 ![screenshot of the dashboard](plots/screenshot_dashboard.png)
 
+
+The data in this repository are enough to test everything described here, but if you like to see more training results, download the data from figshare with doi:[10.6084/m9.figshare.27263556] and replace `\models\` with the downloaded file.
