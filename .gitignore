@@ -1,3 +1,6 @@
+# full model 
+models_full.tar.gz
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

@@ -1,1 +1,0 @@
-{"epochs": 100, "learning_rate": 0.001, "batch_size": 1, "date": "2024_09_10__20_12_16", "model_type": "q+s", "sigma": 0.001, "seq_type": "rRNA", "seq_len": 350, "seqs_file": "data/rRNA/sequences.csv"}

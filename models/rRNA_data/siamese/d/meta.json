@@ -1,1 +1,0 @@
-{"epochs": 100, "learning_rate": 0.001, "batch_size": 1, "date": "2024_09_10__21_38_51", "model_type": "siamese", "sigma": "nan", "seq_type": "rRNA", "seq_len": 350, "seqs_file": "data/rRNA/sequences.csv"}
