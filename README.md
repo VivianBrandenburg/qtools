@@ -1,3 +1,5 @@
+# QTools: Toolbox for training siamese and quartet networks for inferring phylogenetic features
+
 If you are mainly interested in exploring the training results, check out how to use the [Dashboard](#explore-the-results-with-dashboard). 
 If you want to use the training code start with the [Installation instructions](#install).
 
@@ -30,9 +32,7 @@ conda activate qnet
 
 If you need to troubleshoot or you prefer to install required packages in a different way, you can  install the qtools independent from `qnet.yml`: 
 ```
-cd ./qtools
-python setup.py sdist
-pip install .
+pip install qtools/
 ```
 
 ## Requirements
