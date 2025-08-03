@@ -105,7 +105,7 @@ scoring_batches = pd.read_csv(minibatches_quartet, index_col=0)
 
 # set up model 
 seq_len = data.get_seqlen()
-singlemodel = qt.CNN_ONEHOT(seq_len)
+singlemodel = qt.CNN_ONEHOT(seq_len, output_dims=32)
 
 
 # build quartetnet or siamesenet
@@ -226,7 +226,7 @@ for e in range(epochs):
     
     
         # you can immediately plot the results if you want 
-        t.plotall(e+1, 'test')
+        t.plotall(e+1, 'test', plot_live=True)
         
         
         # save model weights 
