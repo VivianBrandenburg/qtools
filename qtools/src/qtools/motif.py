@@ -1,14 +1,17 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+
+
+import numpy as np
+import pandas as pd
+import logomaker
+import seaborn as sns
+
+
+
 class motif():
-    
-    import numpy as np
-    import pandas as pd
-    import logomaker
-    import seaborn as sns
-    
-    
+
     
 
     alphabet = ['A', 'C', 'G', 'T']
@@ -104,7 +107,7 @@ class motif():
         
         figsize = (4.17,1.08 )
         
-        m_logo = logomaker.Logo(df, font_name='Arial Rounded MT Bold',
+        m_logo = logomaker.Logo(df, font_name='Arial',
                                 color_scheme=cls.colorscheme,
                                 figsize = figsize            )
         # style axes
