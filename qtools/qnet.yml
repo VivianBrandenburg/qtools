@@ -1,5 +1,6 @@
 name: qnet_t2
 dependencies:
+  - python=3.9.7
   - conda-forge::biopython
   - pandas
   - scikit-learn
@@ -10,4 +11,4 @@ dependencies:
   - pip
   - pip:
     - logomaker
-    - ./dist/qtools-1.0.0.tar.gz
+    - ./

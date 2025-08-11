@@ -1,7 +1,7 @@
 name: qdash
 dependencies:
   - pandas
-  - seabornconda activate da
+  - seaborn
   - pillow
   - plotly 
   - dash
