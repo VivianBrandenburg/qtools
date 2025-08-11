@@ -391,7 +391,7 @@ If you want to explore the input sequences and the results of trained models, yo
 
 You might want to set up a new environment for the dashboard with [conda](https://docs.conda.io/projects/conda/en/latest/user-guide/index.html) and start the dashboard with pyhton
 ```
-cd ./dashboard 
+cd ./qdashboard 
 
 conda env create -f qdash.yml
 conda activate qdash
@@ -407,4 +407,4 @@ You can use the dashboard to
 ![screenshot of the dashboard](plots/screenshot_dashboard.png)
 
 
-The data in this repository are enough to test everything described here, but if you like to see more training results, download the data from figshare with doi:[10.6084/m9.figshare.27263556] and replace `\models\` with the downloaded file.
+The data in this repository are enough to test everything described here, but if you like to see more training results, [download the data from figshare ](https://doi.org/10.6084/m9.figshare.27263556.v1) and replace `\models\` with the downloaded file.
