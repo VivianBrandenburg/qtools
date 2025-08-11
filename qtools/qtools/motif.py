@@ -97,14 +97,14 @@ class motif():
         
     @classmethod
     def make_logo(cls, df):
-        
+        import logomaker #fixes the import issue down below
         width = len(df) 
         scaling_factor = 9
         figsize = (width/scaling_factor, 6/scaling_factor)
         
         figsize = (4.17,1.08 )
         
-        m_logo = logomaker.Logo(df, font_name='Arial Rounded MT Bold',
+        m_logo = logomaker.Logo(df, font_name='DejaVu Sans', #always available font
                                 color_scheme=cls.colorscheme,
                                 figsize = figsize            )
         # style axes
