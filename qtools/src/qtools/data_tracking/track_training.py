@@ -23,15 +23,15 @@ class DefaultTracking():
     def track(self, val):
         self.values = val
         
-    def plot(self, to_file=False):
+    def plot(self, to_file=False, plot_live=True):
         for k,v in self.values.items():
             plt.plot(range(len(v)), v, label=k)
         plt.legend()    
         plt.xlabel('epoch')
         plt.ylabel('value')
         if to_file: plt.savefig(self._outfile+'.svg', bbox_inches='tight')
-        plt.show()
-    
+        plt.show() if plot_live else plt.close()    
+        
     def write(self):
         outfile = self._outfile + '.json'
         with open(outfile, 'w') as outf:
@@ -53,10 +53,10 @@ class Epoche(DefaultTracking):
     def track(self, value):
         self.values.append(value)
     
-    def plot(self, to_file=False):
+    def plot(self, to_file=False, plot_live=True):
         plt.plot(range(len(self.values)), self.values)
         if to_file: plt.savefig(self._outfile+'.svg', bbox_inches='tight')
-        plt.show()
+        plt.show() if plot_live else plt.close()
     
 
     
@@ -85,7 +85,7 @@ class FeatureVectors(DefaultTracking):
         return epoche
     
     
-    def plot(self, epoch=None, to_file=False):
+    def plot(self, epoch=None, to_file=False, plot_live=True):
         """
         plot feature vectors as heat map
 
@@ -106,7 +106,7 @@ class FeatureVectors(DefaultTracking):
             hm.set_yticklabels(self.y_names, rotation=0)
             hm.set_title(f'epoch {e}')
             if to_file: plt.savefig(self._outfile+f'_{e}.svg', bbox_inches='tight')
-            plt.show()
+            plt.show() if plot_live else plt.close()
     
     def write(self):
         value_dump = {k:v.tolist() for k,v in self.values.items()}
@@ -187,10 +187,10 @@ class Tracking():
         print('\nlosses:\n', self.losses.values)
         print('\nscores:\n', self.scores.values)
         
-    def plotall(self,epoch=None, to_file=False):
-        self.feature_vectors.plot(epoch=epoch, to_file=to_file)
-        self.losses.plot(to_file=to_file)
-        self.scores.plot(to_file=to_file)
+    def plotall(self,epoch=None, to_file=False, plot_live=True):
+        self.feature_vectors.plot(epoch=epoch, to_file=to_file, plot_live=plot_live)
+        self.losses.plot(to_file=to_file, plot_live=plot_live)
+        self.scores.plot(to_file=to_file, plot_live=plot_live)
     
     def writeall(self):
         for el in self.elements:

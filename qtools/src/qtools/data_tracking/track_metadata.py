@@ -9,12 +9,13 @@ class metadata():
 
     collected_keys = [
         'epochs', 'learning_rate', 'batch_size', 'date',
-                  'model_type', 'sigma',
-                   'seq_type', 'mutation_scheme', 'seq_len', 'seqs_file', 'out_dir']
+        'model_type', 'sigma', 'seq_type', 'mutation_scheme', 
+        'seq_len', 'seqs_file', 'out_dir', 'output_dims']
         
 
-    collected_automatic = ['epochs', 'learning_rate', 'batch_size',  'sigma',
-                   'seq_len', 'seqs_file', 'out_dir', 'mutation_scheme']
+    collected_automatic = ['epochs', 'learning_rate', 'batch_size',  
+        'sigma', 'seq_len', 'seqs_file', 'out_dir', 'mutation_scheme',
+        'output_dims']
     
     def __init__(self, metadata={}):
         self.metadata = metadata
