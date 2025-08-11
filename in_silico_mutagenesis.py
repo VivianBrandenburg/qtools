@@ -13,7 +13,7 @@ from qtools.attribution_scores import calculate_mutagensis_scores, mutagenesis
 # =============================================================================
 # set up input and output files
 # =============================================================================
-seqs_file = '.data/simdata/s8_n20m3_r7_run1/sequences.csv'
+seqs_file = 'data/simdata/s8_n20m3_r7_run1/sequences.csv'
 weights = 'models/simulated_data/quartet_plus_siamese/a/weights/m10_weights.h5'
 outdir = 'plots/mutagenesis'
 
