@@ -55,7 +55,7 @@ def update_mutagenesis_dropdown(meta_selected, selected_epoch):
         return {'display': 'none'}, [], None
     features = find_mutagenesis_features(mutagenesis_path, selected_epoch)
     if features:
-        options = [{'label': f'Feature {f}', 'value': f} for f in features]
+        options = [{'label': f'Feature {f+1}', 'value': f} for f in features]
         value = features[0]
     else:
         options = [{'label': f'epoch {selected_epoch} has features', 'value': 'no_features', 'disabled': True}]
@@ -91,7 +91,7 @@ def plot_mutagenesis_logo(meta_selected, selected_epoch, selected_feature):
     if arr.ndim != 2 or arr.shape[1] != 4:
         msg = f"no in-silico mutagenesis motif found for epoch {selected_epoch}. I found a npy file at {npy_path}, but it was broken."
         return mutagenesis_message(msg)
-    # Use motif class for color scheme and alphabet
+    # Use motif class for color scheme and nucleotide order
     m = motif(['A'*arr.shape[0]])  # dummy motif to access class vars
     def rgb_to_hex(rgb):
         return '#%02x%02x%02x' % tuple(int(255*x) for x in rgb)
@@ -102,8 +102,20 @@ def plot_mutagenesis_logo(meta_selected, selected_epoch, selected_feature):
             color_scheme['U'] = rgb_to_hex(v)
         else:
             color_scheme[k] = rgb_to_hex(v)
-    columns = [nt if nt in ['A', 'C', 'G', 'U'] else 'U' for nt in m.alphabet]
-    df = pd.DataFrame(arr, columns=columns)
+    # Map arr columns to motif.alphabet order, then relabel T->U for display
+    # If arr columns are [T, C, G, A], and motif.alphabet is [A, C, G, T],
+    # we need to find the mapping from motif.alphabet to arr columns
+    arr_nts = ['C', 'G', 'T', 'A']  # assumed order in arr (update if needed)
+    # Build index mapping: for each nt in motif.alphabet, find its index in arr_nts
+    idx_map = []
+    for nt in m.alphabet:
+        if nt == 'U':
+            idx_map.append(arr_nts.index('T'))
+        else:
+            idx_map.append(arr_nts.index(nt))
+    arr_reordered = arr[:, idx_map]
+    motif_nts = [nt if nt != 'U' else 'T' for nt in m.alphabet]
+    df = pd.DataFrame(arr_reordered, columns=motif_nts)
     fig, ax = plt.subplots(figsize=(min(12, arr.shape[0] / 5), 2))
     logomaker.Logo(df, ax=ax, color_scheme=color_scheme)
     ax.set_ylabel('Score')
