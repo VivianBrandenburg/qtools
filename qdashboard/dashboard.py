@@ -36,7 +36,7 @@ traindatasource =  '../' # keep '../' if you want to run the app from the qdashb
 
 # path from here to trained models 
 # all metadata files from this path (including subdirectories) will be collected 
-resultsdatasource = '/home/viv/Documents/GitHub/projects/qtools_reste/models_review'
+resultsdatasource = '/home/models_variableOutputNodes'
 
 
 # =============================================================================
@@ -205,7 +205,7 @@ html.Div([
         html.H5('Mutagenesis Feature', style={'margin-bottom': '8px'}),
         html.Div([
             dcc.Dropdown(id='mutagenesis-feature-dropdown', clearable=False, className='mutagenesis-dropdown', style={'width': '120px', 'margin-right': '30px', 'display': 'inline-block', 'verticalAlign': 'middle'}),
-            html.Img(id='mutagenesis-logo', style={'height': '110px', 'display': 'inline-block', 'verticalAlign': 'middle'})
+            html.Div(id='mutagenesis-logo-container', style={'height': '110px', 'display': 'inline-block', 'verticalAlign': 'middle'})
         ], style={'display': 'flex', 'alignItems': 'center', 'gap': '20px'})
     ], id='mutagenesis-row', className='mutagenesisrow', style={'display': 'none', 'margin-top': '10px', 'alignItems': 'flex-start', 'justifyContent': 'flex-start'}),
     

@@ -1,9 +1,15 @@
+# Helper for vertically centered, styled message in the mutagenesis logo container
+def mutagenesis_message(msg):
+    return html.Div(
+        html.P(msg, style={"color": "gray", "fontSize": "14px", "margin": "0", "fontFamily": "inherit"}),
+        style={"display": "flex", "flexDirection": "column", "justifyContent": "center", "height": "110px"}
+    )
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 import os
 import re
-from dash import Input, Output, State, callback
+from dash import Input, Output, State, callback, html
 import dash
 
 import numpy as np
@@ -58,25 +64,35 @@ def update_mutagenesis_dropdown(meta_selected, selected_epoch):
 
 # Callback to plot the selected mutagenesis feature as a logo
 @callback(
-    Output('mutagenesis-logo', 'src'),
+    Output('mutagenesis-logo-container', 'children'),
     Input('meta_selected', 'data'),
     Input('epoch-selected', 'value'),
     Input('mutagenesis-feature-dropdown', 'value'),
 )
 def plot_mutagenesis_logo(meta_selected, selected_epoch, selected_feature):
-    if not meta_selected or selected_feature is None or selected_feature == 'no_features':
+    if not meta_selected:
         return None
     path = meta_selected['path']
-    npy_path = os.path.join(path, 'mutagenesis', f"e{selected_epoch}_f{selected_feature}.npy")
+    mutagenesis_path = os.path.join(path, 'mutagenesis')
+    # If no mutagenesis folder at all
+    if not os.path.isdir(mutagenesis_path):
+        msg = f"no in-silico mutagenesis found for this model at {path}"
+        return mutagenesis_message(msg)
+    # If no features for this epoch
+    if selected_feature is None or selected_feature == 'no_features':
+        msg = f"no in-silico mutagenesis motif found for epoch {selected_epoch}"
+        return mutagenesis_message(msg)
+    npy_path = os.path.join(mutagenesis_path, f"e{selected_epoch}_f{selected_feature}.npy")
     if not os.path.isfile(npy_path):
-        return None
+        msg = f"no in-silico mutagenesis motif found for epoch {selected_epoch}"
+        return mutagenesis_message(msg)
     arr = np.load(npy_path)
     # Only handle (L, 4) arrays
     if arr.ndim != 2 or arr.shape[1] != 4:
-        return None
+        msg = f"no in-silico mutagenesis motif found for epoch {selected_epoch}. I found a npy file at {npy_path}, but it was broken."
+        return mutagenesis_message(msg)
     # Use motif class for color scheme and alphabet
     m = motif(['A'*arr.shape[0]])  # dummy motif to access class vars
-    # Convert color scheme to logomaker format (dict of letter to RGB tuple)
     def rgb_to_hex(rgb):
         return '#%02x%02x%02x' % tuple(int(255*x) for x in rgb)
     color_scheme = {}
@@ -86,7 +102,6 @@ def plot_mutagenesis_logo(meta_selected, selected_epoch, selected_feature):
             color_scheme['U'] = rgb_to_hex(v)
         else:
             color_scheme[k] = rgb_to_hex(v)
-    # Use the motif alphabet, but replace T with U if needed
     columns = [nt if nt in ['A', 'C', 'G', 'U'] else 'U' for nt in m.alphabet]
     df = pd.DataFrame(arr, columns=columns)
     fig, ax = plt.subplots(figsize=(min(12, arr.shape[0] / 5), 2))
@@ -99,4 +114,4 @@ def plot_mutagenesis_logo(meta_selected, selected_epoch, selected_feature):
     plt.close(fig)
     buf.seek(0)
     img_base64 = base64.b64encode(buf.read()).decode('utf-8')
-    return f"data:image/png;base64,{img_base64}"
+    return html.Img(src=f"data:image/png;base64,{img_base64}", style={"height": "110px"})
