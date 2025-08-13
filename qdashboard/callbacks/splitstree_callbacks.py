@@ -41,19 +41,35 @@ def crop_images_in_folder(path):
     Input('meta_selected', 'data'),
     Input("epoch-selected", "value"))
 def update_tree(meta_selected, selected_epoch):
-    path_results =  meta_selected['path']
-    
-    # if no cropping folder exists yet, then create one 
-    cropping_folder = path_results + '/tree_images_cropped/'
-    if not os.path.exists(cropping_folder):
-        os.makedirs(cropping_folder)
-        
-    # create all missing cropped images
-    crop_images_in_folder(path_results + '/')
-    
-    # read the cropped version of the splitstree graph
-    splitstree = cropping_folder + str(selected_epoch) + '.png'
-    encoded_image = base64.b64encode(open(splitstree, 'rb').read())
+    path_results = meta_selected['path']
+
+    # Prefer 'tree_images_cropped', then 'cropped'
+    cropping_folder = None
+    for folder in [os.path.join(path_results, 'tree_images_cropped'), os.path.join(path_results, 'cropped')]:
+        if os.path.isdir(folder):
+            cropping_folder = folder
+            break
+
+    # If no cropped folder, but original images exist, auto-crop to 'tree_images_cropped'
+    if cropping_folder is None:
+        originals = [x for x in os.listdir(path_results) if x.endswith('.png')]
+        if originals:
+            cropping_folder = os.path.join(path_results, 'tree_images_cropped')
+            if not os.path.exists(cropping_folder):
+                os.makedirs(cropping_folder)
+            for x in originals:
+                cropped_path = os.path.join(cropping_folder, x)
+                if not os.path.isfile(cropped_path):
+                    crop_image(os.path.join(path_results, x))
+        else:
+            return 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="40"><text x="10" y="25" font-size="14" fill="gray">No cropped or original splitstree images found.</text></svg>'
+
+    splitstree = os.path.join(cropping_folder, f'{selected_epoch}.png')
+    if not os.path.isfile(splitstree):
+        return 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="40"><text x="10" y="25" font-size="14" fill="gray">No splitstree image for this epoch.</text></svg>'
+
+    with open(splitstree, 'rb') as f:
+        encoded_image = base64.b64encode(f.read())
     new_image_src = 'data:image/png;base64,{}'.format(encoded_image.decode())
     return new_image_src
 
