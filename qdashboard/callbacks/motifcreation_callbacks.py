@@ -59,7 +59,10 @@ def prepare_spec_names(selected_data):
 # default for 'no motif to show'
 # =============================================================================
 
-motif_button_default = html.Center([html.P('Select species and sequence from the data table'), html.P(' and hit submit to create a motif')], style={'padding':'10%', "color": "gray", "fontSize": "14px"})
+motif_button_default = html.Div([
+    html.P('Select species and sequence from the data table'),
+    html.P('and hit submit to create a motif')
+], style={'padding': '10%', "color": "gray", "fontSize": "14px", "textAlign": "left"})
 
 
 # =============================================================================

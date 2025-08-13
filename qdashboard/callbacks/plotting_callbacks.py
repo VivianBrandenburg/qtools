@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import pandas as pd
-from dash import Input, Output,  callback
+from dash import Input, Output, callback, html
 import json
 import plotly.express as px
 import numpy as np
@@ -102,3 +102,24 @@ def filter_heatmap(meta_selected, selected_epoch):
     data = data[str(selected_epoch)]
     fig = make_heatmap(data, labels) # plot feature vectors
     return fig
+
+
+
+
+# =============================================================================
+# Callback to update the reference tree image based on model type
+# =============================================================================
+@callback(
+    Output('reftree-img-container', 'children'),
+    Input('schemes-radio', 'value'),
+)
+def update_reftree_img(schemes_value):
+    print('schemes_value:', schemes_value)
+    if schemes_value and 'randomized' in str(schemes_value).lower():
+        src = 'assets/reftree_randomized.png'
+        print('gotcha')
+    else:
+        print('not gotcha')
+        src = 'assets/reftree.png'
+    return html.Img(src=src, alt='image', style={'height': '180px', 'margin-top': '10px'})
+

@@ -36,7 +36,7 @@ traindatasource =  '../' # keep '../' if you want to run the app from the qdashb
 
 # path from here to trained models 
 # all metadata files from this path (including subdirectories) will be collected 
-resultsdatasource = '/home/models_variableOutputNodes'
+resultsdatasource = '/home/viv/Documents/GitHub/projects/qtools_reste/models_variableOutputNodes'
 
 
 # =============================================================================
@@ -65,6 +65,10 @@ app.layout = html.Div([
 dcc.Store(id='meta', data=meta.to_dict("records")),
 dcc.Store(id='meta_selected'),
 dcc.Store(id='traindatasource', data=traindatasource),
+
+
+
+
 
 # =============================================================================
 # layout head 
@@ -186,10 +190,15 @@ html.Div([
     # =============
     # callbacks are in callbacks.plotting_callbacks    
     html.Div([
-            
-    html.H5('Ref. Tree'),
-    html.Img(src=r'assets/reftree.png', alt='image', style={'height':'180px', 'margin-top':'10px'})
-        ], className='reftree'),
+        html.H5('Ref. Tree'),
+        dcc.Loading(
+            id='reftree-loading',
+            children=[
+                html.Div(id='reftree-img-container')
+            ],
+            type='default',
+        ),
+    ], className='reftree'),
     
 
     html.Div([
@@ -205,16 +214,16 @@ html.Div([
         html.H5('Mutagenesis Feature', style={'margin-bottom': '8px'}),
         html.Div([
             dcc.Dropdown(id='mutagenesis-feature-dropdown', clearable=False, className='mutagenesis-dropdown', style={'width': '120px', 'margin-right': '30px', 'display': 'inline-block', 'verticalAlign': 'middle'}),
-            html.Div(id='mutagenesis-logo-container', style={'height': '110px', 'display': 'inline-block', 'verticalAlign': 'middle'})
+            html.Div(id='mutagenesis-logo-container', style={'height': '165px', 'display': 'inline-block', 'verticalAlign': 'middle'})
         ], style={'display': 'flex', 'alignItems': 'center', 'gap': '20px'})
     ], id='mutagenesis-row', className='mutagenesisrow', style={'display': 'none', 'margin-top': '10px', 'alignItems': 'flex-start', 'justifyContent': 'flex-start'}),
-    
+
     
 
 ], className='grid-container'),
     
 
-    
+html.Hr(), 
 # =============================================================================
 #  container 2 - select sequences and plot a motif from these sequences 
 # =============================================================================

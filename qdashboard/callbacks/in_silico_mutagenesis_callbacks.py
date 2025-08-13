@@ -2,7 +2,7 @@
 def mutagenesis_message(msg):
     return html.Div(
         html.P(msg, style={"color": "gray", "fontSize": "14px", "margin": "0", "fontFamily": "inherit"}),
-        style={"display": "flex", "flexDirection": "column", "justifyContent": "center", "height": "110px"}
+        style={"display": "flex", "flexDirection": "column", "justifyContent": "center", "height": "165px"}
     )
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
@@ -114,4 +114,4 @@ def plot_mutagenesis_logo(meta_selected, selected_epoch, selected_feature):
     plt.close(fig)
     buf.seek(0)
     img_base64 = base64.b64encode(buf.read()).decode('utf-8')
-    return html.Img(src=f"data:image/png;base64,{img_base64}", style={"height": "110px"})
+    return html.Img(src=f"data:image/png;base64,{img_base64}", style={"height": "165px"})
