@@ -202,15 +202,12 @@ html.Div([
     # Mutagenesis feature selection in its own row
 
     html.Div([
+        html.H5('Mutagenesis Feature', style={'margin-bottom': '8px'}),
         html.Div([
-            html.H5('Mutagenesis Feature'),
-            dcc.Dropdown(id='mutagenesis-feature-dropdown', clearable=False, className='mutagenesis-dropdown', style={'width': '120px'}),
-        ], style={'display': 'inline-block', 'verticalAlign': 'top', 'width': '160px'}),
-        html.Div([
-            html.H5('Motif'),
-            html.Img(id='mutagenesis-motif-logo', style={'height': '100px', 'margin-left': '20px'})
-        ], style={'display': 'inline-block', 'verticalAlign': 'top', 'margin-left': '30px'})
-    ], id='mutagenesis-row', className='mutagenesisrow', style={'display': 'none', 'margin-top': '10px'}),
+            dcc.Dropdown(id='mutagenesis-feature-dropdown', clearable=False, className='mutagenesis-dropdown', style={'width': '120px', 'margin-right': '30px', 'display': 'inline-block', 'verticalAlign': 'middle'}),
+            html.Img(id='mutagenesis-logo', style={'height': '110px', 'display': 'inline-block', 'verticalAlign': 'middle'})
+        ], style={'display': 'flex', 'alignItems': 'center', 'gap': '20px'})
+    ], id='mutagenesis-row', className='mutagenesisrow', style={'display': 'none', 'margin-top': '10px', 'alignItems': 'flex-start', 'justifyContent': 'flex-start'}),
     
     
 
