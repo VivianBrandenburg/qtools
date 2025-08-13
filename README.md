@@ -401,10 +401,12 @@ python dashboard.py
 You can use the dashboard to 
 - see **losses and quartet scores** for different model types and different initializations/trainings of the models 
 - check out **feature vectors and splits diagrams** for each epoch during training (splits diagrams created with [SplitsTree4](https://software-ab.cs.uni-tuebingen.de/download/splitstree4/manual.pdf))
+- inspect **motifs** created with **in silico mutagenesis**
 - build **alignment motifs** from the training data (with the help of [logomaker](https://logomaker.readthedocs.io/en/latest/))
 
 
 ![screenshot of the dashboard](plots/screenshot_dashboard.png)
 
 
-The data in this repository are enough to test everything described here, but if you like to see more training results, [download the data from figshare ](https://doi.org/10.6084/m9.figshare.27263556.v1) and replace `\models\` with the downloaded file.
+The data in this repository are enough to test everything described here, but if you like to see more training results, [download the data from figshare ](https://doi.org/10.6084/m9.figshare.29902718.v1) and replace `\models\` with the downloaded file.
+
