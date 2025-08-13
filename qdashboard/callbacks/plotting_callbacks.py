@@ -114,12 +114,9 @@ def filter_heatmap(meta_selected, selected_epoch):
     Input('schemes-radio', 'value'),
 )
 def update_reftree_img(schemes_value):
-    print('schemes_value:', schemes_value)
     if schemes_value and 'randomized' in str(schemes_value).lower():
         src = 'assets/reftree_randomized.png'
-        print('gotcha')
     else:
-        print('not gotcha')
         src = 'assets/reftree.png'
     return html.Img(src=src, alt='image', style={'height': '180px', 'margin-top': '10px'})
 
