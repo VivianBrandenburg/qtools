@@ -47,6 +47,23 @@ def set_sigma_radio(meta, selected_scheme):
     return options, value
 
 
+# output_dims dropdown options and value
+@callback(
+    Output('outputdims-dropdown', 'options'),
+    Output('outputdims-dropdown', 'value'),
+    Input('meta', 'data'),
+    Input('schemes-radio', 'value'),
+    Input('sigma-radio', 'value'),
+)
+def set_outputdims_dropdown(meta, selected_scheme, selected_sigma):
+    options, value = get_available_options(meta, 'output_dims', seq_type=selected_scheme, model_type=selected_sigma)
+    # convert to dropdown format using string label
+    dropdown_options = []
+    for o in options:
+        label = o['label'].children if hasattr(o['label'], 'children') else o['label']
+        dropdown_options.append({'label': label, 'value': o['value'], 'disabled': o.get('disabled', False)})
+    return dropdown_options, value
+
 
 # list available dates depending on radio selections
 @callback(
@@ -54,12 +71,14 @@ def set_sigma_radio(meta, selected_scheme):
     Input('meta', 'data'),
     Input('schemes-radio', 'value'),
     Input('sigma-radio', 'value'),
-    )
-def set_dates_options(meta, selected_scheme, selected_sigma):   
-    meta = pd.DataFrame(meta)    
+    Input('outputdims-dropdown', 'value'),
+)
+def set_dates_options(meta, selected_scheme, selected_sigma, selected_outputdims):
+    meta = pd.DataFrame(meta)
     available_data = meta[(meta['seq_type']==selected_scheme) &
-                           (meta['model_type']==selected_sigma) 
-                           ].sort_values(by='path')
+                         (meta['model_type']==selected_sigma) &
+                         (meta['output_dims']==selected_outputdims)
+                        ].sort_values(by='path')
     available_dates = available_data['date']
     labels = [x.split('/')[-1] for x in available_data['path']]
     return [{'label': i, 'value': j} for i, j in zip(labels, available_dates)]

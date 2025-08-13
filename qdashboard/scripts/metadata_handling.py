@@ -42,9 +42,12 @@ class metadata():
 
         """
         collected_files = [x for x in cls.__collect_metafiles(path, pattern)]
+        # Ensure every entry has output_dims, set to '32' if missing
+        for entry in collected_files:
+            if 'output_dims' not in entry:
+                entry['output_dims'] = '32'
         collected_data = [pd.DataFrame(x, index=[0]) for x in collected_files]
         data_merged = pd.concat(collected_data, ignore_index=True)
-        
         data_merged_asDict = data_merged.to_dict(orient='list') # If the format of the resulting dict is not convinient, you might want to change 'orient' here
         return cls(data_merged_asDict)
 

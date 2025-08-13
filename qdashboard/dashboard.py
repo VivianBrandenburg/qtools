@@ -26,11 +26,11 @@ import scripts.styles as c
 # path for data for selectable table and the motif generation  
 # must fit to 'seq_file' in metadata so that 
 # traindatasource + seqs_file is the path from here to the training sequences
-traindatasource =  '../'
+traindatasource =  '../' # keep '../' if you want to run the app from the qdashboard directory
 
 # path from here to trained models 
 # all metadata files from this path (including subdirectories) will be collected 
-resultsdatasource = '../models/'
+resultsdatasource = '/home/viv/Documents/GitHub/projects/qtools_reste/models_review'
 
 
 # =============================================================================
@@ -99,6 +99,14 @@ html.Div([
             inputStyle={"margin-left": "5px",   "margin-right": "2px",}
         ),
         
+        # select output_dims
+        html.Label('Output Dimensions'),
+        dcc.Dropdown(
+            id='outputdims-dropdown',
+            clearable=False,
+            style={'height': '30px', 'width': '80px', 'margin-bottom': '10px'},
+            className='selectionitem'
+        ),
             
         # select date(run)
         html.Label('Run'),

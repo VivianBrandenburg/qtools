@@ -25,8 +25,9 @@ def crop_image(image_path):
 
 def crop_images_in_folder(path): 
     original_images = [x for x in os.listdir(path) if x.endswith('.png')]
-    cropped_images = [x for x in os.listdir(path+'/cropped') if x.endswith('.png')]
-    missing_images = [x for x in original_images if x not in cropped_images ]
+    relocated_original_images = [x for x in os.listdir(path+'/tree_images') if x.endswith('.png')]
+    cropped_images = [x for x in os.listdir(path+'/tree_images_cropped') if x.endswith('.png')]
+    missing_images = [x for x in original_images+relocated_original_images if x not in cropped_images ]
     for x in missing_images: 
         crop_image(path + x)
 
@@ -43,7 +44,7 @@ def update_tree(meta_selected, selected_epoch):
     path_results =  meta_selected['path']
     
     # if no cropping folder exists yet, then create one 
-    cropping_folder = path_results + '/cropped/'
+    cropping_folder = path_results + '/tree_images_cropped/'
     if not os.path.exists(cropping_folder):
         os.makedirs(cropping_folder)
         
