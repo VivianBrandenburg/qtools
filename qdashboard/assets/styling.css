@@ -1,3 +1,11 @@
+.mutagenesis-dropdown {
+  font-size: 11px;
+}
+.mutagenesisrow{
+  grid-row: 3;
+  grid-column: 3;
+  width: 460px;
+}
 .grid-container {
   display: grid;
    grid-template-columns: 120px 120px 220px 220px auto;

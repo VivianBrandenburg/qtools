@@ -10,8 +10,14 @@ from dash import Dash, dcc, html, dash_table
 # I tranfered some code to modules to unclutter and keep it maintainable. 
 # =============================================================================
 
+
 # The callbacks and their helper functions are in the callback module 
-from callbacks import * 
+from callbacks import in_silico_mutagenesis_callbacks
+from callbacks import dataselection_callbacks
+from callbacks import table_callbacks
+from callbacks import motifcreation_callbacks
+from callbacks import plotting_callbacks
+from callbacks import splitstree_callbacks
 
 # some other helper functions are in the scripts module
 from scripts import prep_data, utils
@@ -185,12 +191,26 @@ html.Div([
     html.Img(src=r'assets/reftree.png', alt='image', style={'height':'180px', 'margin-top':'10px'})
         ], className='reftree'),
     
+
     html.Div([
         html.H5('Feature Vectors'), 
         dcc.Graph(id="heatmap-figure",
                   config={'toImageButtonOptions': {'format':'svg',
                                                    'filename': 'losses'}}), 
      ], className='featurevectors'),
+
+    # Mutagenesis feature selection in its own row
+
+    html.Div([
+        html.Div([
+            html.H5('Mutagenesis Feature'),
+            dcc.Dropdown(id='mutagenesis-feature-dropdown', clearable=False, className='mutagenesis-dropdown', style={'width': '120px'}),
+        ], style={'display': 'inline-block', 'verticalAlign': 'top', 'width': '160px'}),
+        html.Div([
+            html.H5('Motif'),
+            html.Img(id='mutagenesis-motif-logo', style={'height': '100px', 'margin-left': '20px'})
+        ], style={'display': 'inline-block', 'verticalAlign': 'top', 'margin-left': '30px'})
+    ], id='mutagenesis-row', className='mutagenesisrow', style={'display': 'none', 'margin-top': '10px'}),
     
     
 
